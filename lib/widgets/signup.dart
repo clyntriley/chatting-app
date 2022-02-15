@@ -80,7 +80,7 @@ class _MySignupPageState extends State<MySignupPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Sign up',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            const Text('Sign up',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50)),
             Padding(
               padding:  const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -116,7 +116,7 @@ class _MySignupPageState extends State<MySignupPage> {
                         password: passWord.text,
                         context: context);
                     print(user);
-                    Navigator.push(
+                    Navigator.pop(
                       context,
                       MaterialPageRoute(builder: (context) => const Homepage()),
                     );

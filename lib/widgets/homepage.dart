@@ -10,17 +10,23 @@ class Homepage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<Homepage>{
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: (
-        Text('Homepage')
+        child: Column(
+          children: const [
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Search',
+              ),
+            ),
+          ],
         ),
       ),
-
     );
-
   }
-
 }
+

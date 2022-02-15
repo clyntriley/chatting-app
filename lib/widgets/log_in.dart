@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:software_project/widgets/signup.dart';
+import 'package:software_project/Database/database.dart';
 
 import 'homepage.dart';
 
@@ -28,9 +29,6 @@ class MyApp extends StatelessWidget {
 class MyLoginPage extends StatefulWidget {
   const MyLoginPage({Key? key, }) : super(key: key);
 
-
-
-
   @override
   State<MyLoginPage> createState() => _MyLoginPageState();
 }
@@ -40,7 +38,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   final _formKey = GlobalKey<FormState>();
 
 
-  static Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context}) async{
+  Future<User?> loginUsingEmailPassword({required String email, required String password, required BuildContext context}) async{
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try {
@@ -53,6 +51,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
     }
     return user;
   }
+
 
   String? validateEmail(String? email){
     if (email == null || email.isEmpty){
@@ -79,10 +78,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
       include an uppercase letter, number and symbol.
       ''';
     }
-
-
     return null;
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Login',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            const Text('Login',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50)),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
@@ -132,7 +132,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     User? user = await loginUsingEmailPassword(email: userName.text, password: passWord.text, context: context);
                     print(user);
                   if(user != null ){
-                    Navigator.push(
+                    Navigator.pop(
                       context,
                       MaterialPageRoute(builder: (context) => const Homepage()),
                     );
