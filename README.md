@@ -17,3 +17,9 @@ Main milestones
 
 Link to Trello:
 https://trello.com/b/FOmWsMri/user-story-mapping-template
+
+To Login 
+-clyntriley@firebase.com
+-Clyntriley123!
+
+or you can make your own account
