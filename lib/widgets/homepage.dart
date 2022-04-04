@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:software_project/Database/database.dart';
 
 import 'package:software_project/widgets/chatpage.dart';
+import 'package:software_project/widgets/log_in.dart';
 class Homepage extends StatefulWidget {
 
   const Homepage({Key? key}) : super(key: key);
@@ -30,8 +31,7 @@ class _MyHomePageState extends State<Homepage>{
                 Icons.logout,
               ),
               onPressed: () {
-
-
+                storage.signOut(context);
               },
             ),
           ),
@@ -41,6 +41,7 @@ class _MyHomePageState extends State<Homepage>{
       body: Center(
         child: Column(
           children: [
+            const Text("List of Accounts", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
         StreamBuilder<QuerySnapshot>(
         stream: db.collection('users').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

@@ -5,16 +5,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:software_project/widgets/log_in.dart';
 
 
 
 
 class Storage {
-
+  FirebaseAuth auth = FirebaseAuth.instance;
   // login
   Future<User?> loginUsingEmailPassword(
       {required String email, required String password, required BuildContext context}) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
@@ -32,7 +32,6 @@ class Storage {
   // Sign up
   Future<User?> createUserUsingEmailPassword(
       {required String email, required String password, required BuildContext context}) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -49,7 +48,23 @@ class Storage {
     }
   }
 
-  //get specific user when selected
+//sign out
+  Future<void> signOut(BuildContext context) async {
+   try{
+     await auth.signOut().then((value) => {
+       Navigator.pushAndRemoveUntil(context,
+           MaterialPageRoute(builder: (context) => const MyLoginPage()),
+       (route) => false)
+     });
+   } catch (e){
+    print("Error");
+   }
+  }
+
+
+
 
 
 }
+
+

@@ -20,98 +20,98 @@ class _MyChatPageState extends State<MyChatPage> {
   final db = FirebaseAuth.instance;
 
 
-getUser(){
-  final user = db.currentUser;
-  if(user!=null){
-    currentAccount = user;
+  getUser(){
+    final user = db.currentUser;
+    if(user!=null){
+      currentAccount = user;
+    }
   }
-}
 
-@override
+  @override
   void initState() {
-  super.initState();
-  getUser();
+    super.initState();
+    getUser();
 
-}
+  }
 
 
 
-TextEditingController message = TextEditingController();
-Homepage title = Homepage();
+  TextEditingController message = TextEditingController();
+  Homepage title = Homepage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.blueAccent,
-        flexibleSpace: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.only(right: 16),
-            child: Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back,color: Colors.black,),
-                ),
-
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        currentAccount!.email.toString(),
-                        style: const TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),
-                      ),
-                      const SizedBox(height: 6,),
-                    ],
+        appBar: AppBar(
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.blueAccent,
+          flexibleSpace: SafeArea(
+            child: Container(
+              padding: const EdgeInsets.only(right: 16),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(Icons.arrow_back,color: Colors.black,),
                   ),
-                ),
 
-              ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          currentAccount!.email.toString(),
+                          style: const TextStyle( fontSize: 16 ,fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(height: 6,),
+                      ],
+                    ),
+                  ),
+
+                ],
+              ),
             ),
           ),
         ),
-      ),
 
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
 
-            Container(
-              height: 500,
-                child: const SingleChildScrollView( physics:ScrollPhysics(), reverse: true ,child: Messages())),
-            Row(
-              children: [
-                Expanded(child: TextField(
-                  controller: message,
-                  decoration: const InputDecoration(
-                      hintText: 'Enter Message'
-                  ),
-                )),
-                IconButton(onPressed: (){
-                  if(message.text.isNotEmpty){
-                    setMessage.collection('message').doc().set({
-                      "msg":message.text.trim(),
-                      "user": currentAccount!.email.toString(),
-                    });
-                  }
-                  message.clear();
+              Container(
+                  height: 450,
+                  child: const SingleChildScrollView( physics:ScrollPhysics(), reverse: true,child: Messages())),
+              Row(
+                children: [
+                  Expanded(child: TextField(
+                    controller: message,
+                    decoration: const InputDecoration(
+                        hintText: 'Enter Message'
+                    ),
+                  )),
+                  IconButton(onPressed: (){
+                    if(message.text.isNotEmpty){
+                      setMessage.collection('message').doc().set({
+                        "msg":message.text.trim(),
+                        "user": currentAccount!.email.toString(),
+                        "time":DateTime.now(),
+                      });
+                    }
+                    message.clear();
                   },
-                    icon: const Icon(Icons.send))
+                      icon: const Icon(Icons.send))
 
-              ],
-            ),
+                ],
+              ),
 
-          ],
-        ),
-      )
+            ],
+          ),
+        )
     );
   }
 }
-
