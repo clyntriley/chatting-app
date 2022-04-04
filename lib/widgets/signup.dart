@@ -1,5 +1,6 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class MySignupPage extends StatefulWidget {
 }
 
 class _MySignupPageState extends State<MySignupPage> {
-
+  final setMessage = FirebaseFirestore.instance;
 
   final _formKey = GlobalKey<FormState>();
   late Validate validate = Validate();
@@ -34,6 +35,7 @@ class _MySignupPageState extends State<MySignupPage> {
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
     TextEditingController passWord = TextEditingController();
+    TextEditingController name = TextEditingController();
     return Scaffold(
         body: Form(
         key: _formKey,
@@ -48,7 +50,18 @@ class _MySignupPageState extends State<MySignupPage> {
                 validator: validate.validateEmail,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'User Name',
+                  labelText: 'Email',
+                ),
+              ),
+            ),
+
+            Padding(
+              padding:  const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: name,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Nickname',
                 ),
               ),
             ),
@@ -70,6 +83,13 @@ class _MySignupPageState extends State<MySignupPage> {
 
             ElevatedButton(
                   onPressed: () async {
+                    if(email.text.isNotEmpty && passWord.text.isNotEmpty ){
+                      setMessage.collection('users').doc().set({
+                        "emailUser":email.text.trim(),
+                        "name": name.text.trim(),
+
+                      });
+                    }
                   if(_formKey.currentState!.validate()) {
                     User? users = await storage.createUserUsingEmailPassword(
                         email: email.text,

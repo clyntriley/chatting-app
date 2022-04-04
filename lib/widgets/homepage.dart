@@ -54,24 +54,23 @@ class _MyHomePageState extends State<Homepage>{
               shrinkWrap: true,
                 padding: const EdgeInsets.only(left: 10, right: 20),
               children: snapshot.data!.docs.map((document) {
-                return GestureDetector(
-                  onTap: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MyChatPage(),
-                    ));
-                  },
-                  child: Card(
-                      child: ListTile(
-                        title: Text('Username: ' + document['name']),
-                      ),
-                  ),
+                return Card(
+                    child: ListTile(
+                      title: Text('Username: ' + document['name']),
+                    ),
                 );
               }).toList(),
             );
           }
         },
       ),
+            ElevatedButton(onPressed: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyChatPage(),
+                  ));
+            }
+                , child: Text("Enter Chat Room"))
 
 
 
