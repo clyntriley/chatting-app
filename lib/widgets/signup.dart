@@ -71,11 +71,11 @@ class _MySignupPageState extends State<MySignupPage> {
             ElevatedButton(
                   onPressed: () async {
                   if(_formKey.currentState!.validate()) {
-                    User? user = await storage.createUserUsingEmailPassword(
+                    User? users = await storage.createUserUsingEmailPassword(
                         email: email.text,
                         password: passWord.text,
                         context: context);
-                    if(user != null ){
+                    if(users != null ){
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => const Homepage()),

@@ -6,6 +6,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:software_project/services/validate.dart';
 import 'package:software_project/widgets/signup.dart';
 import 'package:software_project/Database/database.dart';
@@ -72,8 +73,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
               child: ElevatedButton(
                 onPressed: () async {
                 if(_formKey.currentState!.validate()){
-                  User? user = await storage.loginUsingEmailPassword(email: userName.text, password: passWord.text, context: context);
-                  if(user != null ){
+                  User? users = await storage.loginUsingEmailPassword(email: userName.text, password: passWord.text, context: context);
+                  if(users != null ){
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const Homepage()),
