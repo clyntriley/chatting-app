@@ -6,7 +6,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:software_project/services/validate.dart';
 import 'package:software_project/widgets/signup.dart';
 import 'package:software_project/Database/database.dart';
@@ -83,7 +82,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 }
 
                   },
-                child: const Text('Login'),
+                child: const Text('Login')
 
 
               ),

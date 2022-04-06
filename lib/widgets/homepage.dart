@@ -70,7 +70,7 @@ class _MyHomePageState extends State<Homepage>{
                   MaterialPageRoute(builder: (context) => const MyChatPage(),
                   ));
             }
-                , child: Text("Enter Chat Room"))
+                , child: const Text("Enter Chat Room"))
 
 
 

@@ -16,6 +16,8 @@ Main milestones that I have achieved
 Link to Trello:
 https://trello.com/b/FOmWsMri/user-story-mapping-template
 
+To run the program
+-- do "flutter run"
 To Login 
 -clyntriley@firebase.com
 -Clyntriley123!

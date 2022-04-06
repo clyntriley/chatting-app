@@ -84,7 +84,7 @@ class _MyChatPageState extends State<MyChatPage> {
             children: [
 
               Container(
-                  height: 450,
+                  height: 500,
                   child: const SingleChildScrollView( physics:ScrollPhysics(), reverse: true,child: Messages())),
               Row(
                 children: [

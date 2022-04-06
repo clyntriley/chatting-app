@@ -40,7 +40,7 @@ class _MessagesState extends State<Messages> {
                 title: Column(
                 crossAxisAlignment:currentAccount!.email == m["user"]
                 ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                  children: [Text(m["msg"]),Text(m["user"])],
+                  children: [Text(m["msg"], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),Text(m["user"] )],
 
               ),
               ),
